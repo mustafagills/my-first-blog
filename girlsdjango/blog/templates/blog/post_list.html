@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="tr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>GillsEffect Blog</title>
-  </head>
-  <body>
-    <div>
-      <h2><a href="">About my First Blog</a></h2>
-      <p>It's my <strong>first</strong> attempt to create a blog using Django.</p>
-      <p>published: 5.06.2019, 11.20</p>
+{% extends 'blog/base.html' %}
+{% block content %}
+  {% for post in posts %}
+    <div class="post">
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <div class="date">
+          <p>Yayın tarihi: {{ post.published_date }}</p>
+        </div>
     </div>
-
-    <div>
-      <h2><a href="">Some post instances</a></h2>
-      <p>While coding this website, I'm also introducing with HTML, CSS and JavaScript.</p>
-      <p>published: 5.06.2019, 11.20</p>
-    </div>
-  </body>
-</html>
+  {% endfor %}
+{% endblock %}
